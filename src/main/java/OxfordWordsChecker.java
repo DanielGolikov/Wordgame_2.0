@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-class WordsGenerator {
+class OxfordWordsChecker {
 
-    Map<String, String> findAllPossibleWords(String word) throws IOException {
-        Heaps_algorithm algorithm= new Heaps_algorithm();
-        ArrayList<String> allPossibleValues= algorithm.getAllPossibleValues(word);
+    Map<String, String> findAllPossibleWords(ArrayList<String> allPossibleValues) throws IOException {
 
         OxfordDictionaryAccess oxfordDictionaryAccess = new OxfordDictionaryAccess();
 

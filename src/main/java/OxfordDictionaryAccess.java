@@ -6,7 +6,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -24,10 +23,11 @@ public class OxfordDictionaryAccess {
         String url = buildURL(word);
         String result = getRequest(url);
         ReadContext ctx = JsonPath.parse(result);
-        if (!ctx.read("$..shortDefinitions[*]").toString().isEmpty()){
+        List<String> description =ctx.read("$..id");
+        if (!description.isEmpty()){
             return ctx.read("$.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0]");
         }
-        return null;
+        return "";
     }
 
     private String buildURL(String word) {
