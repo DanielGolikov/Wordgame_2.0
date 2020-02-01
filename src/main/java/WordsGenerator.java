@@ -1,19 +1,26 @@
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Scanner;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class WordsGenerator {
-     static Scanner scanner = new Scanner(System.in);
-     static Converter converter = new Converter();
+class WordsGenerator {
 
-    public static void main(String[] args) {
-        String input = scanner.nextLine();
-        char[] arrayInput=converter.StringToCharArray(input);
+    Map<String, String> findAllPossibleWords(String word) throws IOException {
         Heaps_algorithm algorithm= new Heaps_algorithm();
-        algorithm.permutationHelper(arrayInput,arrayInput.length);
-        System.out.println(algorithm.getChars());
+        ArrayList<String> allPossibleValues= algorithm.getAllPossibleValues(word);
 
+        OxfordDictionaryAccess oxfordDictionaryAccess = new OxfordDictionaryAccess();
+
+        Map<String,String> results = new HashMap<>();
+
+        for (String item : allPossibleValues) {
+            String description = oxfordDictionaryAccess.getWordDescription(item);
+            if (!description.isEmpty()){
+                results.put(item,description);
+            }
+        }
+        return (results);
     }
 
 

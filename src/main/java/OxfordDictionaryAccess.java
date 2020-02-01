@@ -2,12 +2,10 @@ import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,12 +19,15 @@ public class OxfordDictionaryAccess {
     private static final String APP_ID = "2da425d5";
     private static final String APP_KEY = "35631121990c9ee1961a30ee0e22245c";
 
-    public List<String> getWordDescription(String word) throws IOException {
+    public String getWordDescription(String word) throws IOException {
 
         String url = buildURL(word);
         String result = getRequest(url);
         ReadContext ctx = JsonPath.parse(result);
-        return ctx.read("$..shortDefinitions[*]");
+        if (!ctx.read("$..shortDefinitions[*]").toString().isEmpty()){
+            return ctx.read("$.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0]");
+        }
+        return null;
     }
 
     private String buildURL(String word) {

@@ -3,14 +3,16 @@ import java.util.ArrayList;
 class Heaps_algorithm {
     private Converter converter=new Converter();
 
-    ArrayList<String> getChars() {
+    private ArrayList<String> chars=new ArrayList<>();
+
+    ArrayList<String> getAllPossibleValues(String word){
+        char[] input=converter.StringToCharArray(word);
+        permutationHelper(input,input.length);
         return chars;
     }
 
-    private ArrayList<String> chars=new ArrayList<>();
 
-
-    void permutationHelper(char[] charArray, int currentPosition) {
+    private void permutationHelper(char[] charArray, int currentPosition) {
 
         if (currentPosition == 1) {
             chars.add(converter.CharArrayToString(charArray));
@@ -28,4 +30,12 @@ class Heaps_algorithm {
         charArray[j] = temp;
     }
 
+}
+class Converter {
+    char[] StringToCharArray(String input){
+        return input.toCharArray();
+    }
+    String CharArrayToString(char[] input){
+        return new String(input);
+    }
 }
