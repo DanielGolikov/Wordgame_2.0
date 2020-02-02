@@ -1,3 +1,5 @@
+package org.wordgames;
+
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
 import org.apache.commons.io.IOUtils;
