@@ -7,7 +7,7 @@ import java.util.Map;
 
 class OxfordWordsChecker {
 
-    Map<String, String> findAllPossibleWords(ArrayList<String> allPossibleValues) throws IOException {
+    Map<String, String> findAllPossibleWordsFromArray(ArrayList<String> allPossibleValues) throws IOException {
 
         OxfordDictionaryAccess oxfordDictionaryAccess = new OxfordDictionaryAccess();
 

@@ -8,8 +8,8 @@ import static java.util.stream.Collectors.toSet;
 import static java.util.stream.IntStream.range;
 import static org.wordgames.HeapsAlgorithm.heapsAlgorithmGetAllValues;
 
-class Permutation {
-   static Set<String> getAllPossibleValues(String inputString){
+ class Permutation {
+   static  Set<String> getAllPossibleValues(String inputString){
         int length = inputString.length();
 
         Set<Integer> indexes = range(0, length).boxed().collect(toSet());

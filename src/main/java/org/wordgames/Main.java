@@ -1,15 +1,20 @@
 package org.wordgames;
-import java.io.IOException;
-import java.util.*;
-import static org.wordgames.Permutation.*;
+
+
+import java.util.Map;
+import java.util.Scanner;
+
+import static org.wordgames.WordPicker.*;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) throws IOException {
-       Set<String> output = getAllPossibleValues("attttttttt");
-       System.out.println(output);
-        System.out.println(output.size());
+    public static void main(String[] args) {
+        Map<String,String> result =getAllPossibleWordsFromOne(scanner.nextLine(),scanner.nextByte());
+        System.out.println("result size:" + result.size());
+        for (Map.Entry entry : result.entrySet()) {
+            System.out.println(entry.getKey() + "   : " + entry.getValue());
+        }
 
     }
 }
