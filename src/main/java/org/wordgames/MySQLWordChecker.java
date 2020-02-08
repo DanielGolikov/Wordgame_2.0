@@ -18,7 +18,7 @@ public class MySQLWordChecker {
             }else {
                 System.out.println("passing");
             }
-            System.out.print(i/(allPossibleValues.size()/100) + "% "+i+"  from "+ allPossibleValues.size()+"  is  ");
+            System.out.print((i*100)/allPossibleValues.size() + "% "+i+"  from "+ allPossibleValues.size()+"  is  ");
 
         }
         return results;

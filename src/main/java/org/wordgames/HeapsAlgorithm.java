@@ -21,7 +21,11 @@ class HeapsAlgorithm {
             for (int i = 0; i < currentPosition; i++) {
                 int nextPosition = currentPosition - 1;
                 useHeapsAlgorithm(charArray, nextPosition, chars);
-                swap(charArray, currentPosition % 2 == 0 ? i : 0, nextPosition);
+                if (currentPosition % 2 == 0) {
+                    swap(charArray, i, nextPosition);
+                } else {
+                    swap(charArray, 0, nextPosition);
+                }
             }
         }
         return chars;
