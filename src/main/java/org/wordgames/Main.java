@@ -15,7 +15,5 @@ public class Main {
         for (Map.Entry entry : result.entrySet()) {
             System.out.println(entry.getKey() + "   : " + entry.getValue());
         }
-        MySQLConnector mySQLConnector=new MySQLConnector();
-        System.out.println(mySQLConnector.getWordDescription("Fuji"));
     }
 }
