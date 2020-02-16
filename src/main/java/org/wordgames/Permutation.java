@@ -10,7 +10,7 @@ import static java.util.stream.IntStream.range;
 import static org.wordgames.HeapsAlgorithm.heapsAlgorithmGetAllValues;
 
  class Permutation {
-   static ArrayList<String> getAllPossibleValues(String inputString){
+   static ArrayList<String> getAllPossibleValues(String inputString, int targetLength){
         int length = inputString.length();
 
         Set<Integer> indexes = range(0, length).boxed().collect(toSet());
@@ -24,7 +24,13 @@ import static org.wordgames.HeapsAlgorithm.heapsAlgorithmGetAllValues;
                                 .collect(joining()))
                 .flatMap(str -> heapsAlgorithmGetAllValues(str).stream())
                 .collect(toSet());
-        ArrayList<String> result = new ArrayList<>(collect);
+        ArrayList<String> allValues = new ArrayList<>(collect);
+        ArrayList<String> result = new ArrayList<>();
+        for (String item:allValues){
+            if (item.length()>=targetLength){
+                result.add(item);
+            }
+        }
         return result;
     }
 }
