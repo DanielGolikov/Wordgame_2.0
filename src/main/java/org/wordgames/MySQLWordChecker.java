@@ -1,26 +1,34 @@
 package org.wordgames;
 
-import java.io.IOException;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-public class MySQLWordChecker {
-    static Map<String, String> findAllWordsFromArray(ArrayList<String> allPossibleValues) throws IOException {
-        MySQLConnector mySQLConnector = new MySQLConnector();
-        Map<String,String> results = new HashMap<>();
-        System.out.println("size:" + allPossibleValues.size());
-        for (int i=0;i<allPossibleValues.size();i++) {
-            String description = mySQLConnector.getWordDescription(allPossibleValues.get(i));
-            if (!description.isEmpty()){
-                results.put(allPossibleValues.get(i),description);
-               System.out.println("adding");
-            }else {
-                System.out.println("passing");
+
+class MySQLWordChecker {
+    private static String url = "jdbc:mysql://localhost/mysql?allowMultiQueries=true";
+    private static String username = "root";
+    private static String password = "password";
+
+
+    static void findAllWordsFromArray(ArrayList<String> allPossibleValues){
+        try {
+            Connection con;
+            con = DriverManager.getConnection(url, username, password);
+            PreparedStatement ps = con.prepareStatement("TRUNCATE TABLE wn_pro_mysql.temporary_results");
+            ps.executeUpdate();
+            for (String item:allPossibleValues){
+                 ps = con.prepareStatement("CALL wn_pro_mysql.get_word_meaning ('" + item + "' ,@a);\n" +
+                        "INSERT wn_pro_mysql.temporary_results(word,meaning) \n" +
+                        "VALUES ('" + item +"' ,@a);" +
+                         "DELETE FROM wn_pro_mysql.temporary_results WHERE meaning IS NULL");
+                ps.executeUpdate();
             }
-            System.out.print((i*100)/allPossibleValues.size() + "% "+i+"  from "+ allPossibleValues.size()+"  is  ");
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return results;
     }
 }

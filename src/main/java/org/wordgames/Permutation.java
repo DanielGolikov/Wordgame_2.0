@@ -1,5 +1,6 @@
 package org.wordgames;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import static com.google.common.collect.Sets.combinations;
@@ -9,7 +10,7 @@ import static java.util.stream.IntStream.range;
 import static org.wordgames.HeapsAlgorithm.heapsAlgorithmGetAllValues;
 
  class Permutation {
-   static  Set<String> getAllPossibleValues(String inputString){
+   static ArrayList<String> getAllPossibleValues(String inputString){
         int length = inputString.length();
 
         Set<Integer> indexes = range(0, length).boxed().collect(toSet());
@@ -23,6 +24,7 @@ import static org.wordgames.HeapsAlgorithm.heapsAlgorithmGetAllValues;
                                 .collect(joining()))
                 .flatMap(str -> heapsAlgorithmGetAllValues(str).stream())
                 .collect(toSet());
-        return collect;
+        ArrayList<String> result = new ArrayList<>(collect);
+        return result;
     }
 }
