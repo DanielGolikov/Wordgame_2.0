@@ -11,8 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-// поиск смысла жизни ...
-        ArrayList words = getAllPossibleValues("");
+        ArrayList words = getAllPossibleValues("apple");
         MySQLWordChecker.findAllWordsFromArray(words);
         long finish = System.currentTimeMillis();
         long timeConsumedMillis = finish - start;

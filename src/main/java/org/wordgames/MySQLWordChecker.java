@@ -26,6 +26,7 @@ class MySQLWordChecker {
                         "VALUES ('" + item +"' ,@a);" +
                          "DELETE FROM wn_pro_mysql.temporary_results WHERE meaning IS NULL");
                 ps.executeUpdate();
+                System.out.println(".");
             }
         } catch (SQLException e) {
             e.printStackTrace();
