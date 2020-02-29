@@ -1,7 +1,5 @@
 package org.wordgames;
 
-import com.mysql.cj.jdbc.MysqlDataSource;
-
 import java.util.ArrayList;
 
 import static org.wordgames.Permutation.*;
