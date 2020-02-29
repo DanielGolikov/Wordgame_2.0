@@ -12,7 +12,6 @@ public class Main {
         long start = System.currentTimeMillis();
         MySQLWordChecker.findAllWordsFromArray(words);
         long finish = System.currentTimeMillis();
-
         long timeConsumedMillis = finish - start;
         System.out.println(timeConsumedMillis);
         start = System.currentTimeMillis();
