@@ -1,17 +1,16 @@
 package org.wordgames;
 
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-class MySQLWordChecker {
-    private static String url = "jdbc:mysql://localhost/mysql?allowMultiQueries=true";
-    private static String username = "root";
+public class PostgresSQLWordChecker {
+    private static String url = "jdbc:postgresql://localhost:5432/postgres";
+    private static String username = "postgres";
     private static String password = "password";
-
-
-    static void findAllWordsFromArray(ArrayList<String> allPossibleValues){
+    static void findAllWordsFromArray(ArrayList<String> allPossibleValues) {
         try {
             Connection con;
             con = DriverManager.getConnection(url, username, password);
@@ -20,9 +19,9 @@ class MySQLWordChecker {
             ps.executeUpdate();
 
             for (String item:allPossibleValues){
-                ps = con.prepareStatement("insert into temporary_results values('"+ item +"');");
+                ps = con.prepareStatement("insert into temporary_results values ('"+ item +"');");
                 ps.executeUpdate();
-               // System.out.println(".");
+                //System.out.println(".");
             }
             ps = con.prepareStatement("drop table if exists wn_pro_mysql.results;"+
                     "create table wn_pro_mysql.results as " +
@@ -32,11 +31,9 @@ class MySQLWordChecker {
                     "on wn_pro_mysql.wn_words.word=temporary_results.word");
             ps.executeUpdate();
 
-
-
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        }
     }
-}
