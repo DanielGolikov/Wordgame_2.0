@@ -17,11 +17,11 @@ public class PostgresSQLWordChecker {
 
             PreparedStatement ps = con.prepareStatement("create temporary table temporary_results(word varchar(15) primary key);");
             ps.executeUpdate();
-
-            for (String item:allPossibleValues){
-                ps = con.prepareStatement("insert into temporary_results values ('"+ item +"');");
+            System.out.println(allPossibleValues.size());
+            for (int i=0;i<allPossibleValues.size();i++){
+                ps = con.prepareStatement("insert into temporary_results values ('"+ allPossibleValues.get(i) +"');");
                 ps.executeUpdate();
-                //System.out.println(".");
+                System.out.println(i);
             }
             ps = con.prepareStatement("drop table if exists wn_pro_mysql.results;"+
                     "create table wn_pro_mysql.results as " +
