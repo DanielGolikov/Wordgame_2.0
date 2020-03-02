@@ -23,6 +23,7 @@ public class PostgresSQLWordChecker {
                 ps.executeUpdate();
                 System.out.println(i);
             }
+
             ps = con.prepareStatement("drop table if exists wn_pro_mysql.results;"+
                     "create table wn_pro_mysql.results as " +
                     "SELECT wn_pro_mysql.wn_words.word " +

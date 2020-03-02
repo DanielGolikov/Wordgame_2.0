@@ -8,13 +8,7 @@ import static org.wordgames.Permutation.*;
 public class Main {
 
     public static void main(String[] args) {
-        ArrayList words = getAllPossibleValues("apple",4);
-
-//        long start = System.currentTimeMillis();
-//        MySQLWordChecker.findAllWordsFromArray(words);
-//        long finish = System.currentTimeMillis();
-//        long timeConsumedMillis = finish - start;
-//        System.out.println(timeConsumedMillis);
+        ArrayList words = getAllPossibleValues("target",4);
 
         long start = System.currentTimeMillis();
         PostgresSQLWordChecker.findAllWordsFromArray(words);
