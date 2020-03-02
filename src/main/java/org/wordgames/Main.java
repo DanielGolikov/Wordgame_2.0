@@ -14,7 +14,6 @@ public class Main {
 //        long finish = System.currentTimeMillis();
 //        long timeConsumedMillis = finish - start;
 //        System.out.println(timeConsumedMillis);
-
         long start = System.currentTimeMillis();
         PostgresSQLWordChecker.findAllWordsFromArray(words);
         long finish = System.currentTimeMillis();
