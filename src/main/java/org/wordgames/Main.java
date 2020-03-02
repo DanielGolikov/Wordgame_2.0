@@ -9,6 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         ArrayList words = getAllPossibleValues("apple",4);
+
 //        long start = System.currentTimeMillis();
 //        MySQLWordChecker.findAllWordsFromArray(words);
 //        long finish = System.currentTimeMillis();
