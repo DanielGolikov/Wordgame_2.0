@@ -11,6 +11,7 @@ import static com.google.common.collect.Sets.combinations;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toSet;
 import static java.util.stream.IntStream.range;
+import static org.wordgames.GFG.GFGgetResult;
 import static org.wordgames.HeapsAlgorithm.heapsAlgorithmGetAllValues;
 
  class Permutation {
@@ -26,9 +27,10 @@ import static org.wordgames.HeapsAlgorithm.heapsAlgorithmGetAllValues;
                                 .map(inputString::charAt)
                                 .map(String::valueOf)
                                 .collect(joining()))
-                .flatMap(str -> heapsAlgorithmGetAllValues(str).stream())
+                .flatMap(str -> GFGgetResult(str).stream())
                 .collect(toSet());
         ArrayList<String> allValues = new ArrayList<>(collect);
+
 
        new File("file.csv");
        try (PrintWriter csvWriter = new PrintWriter(new FileWriter("file.csv"))) {
