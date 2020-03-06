@@ -1,5 +1,9 @@
 package org.wordgames;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -10,7 +14,7 @@ import static java.util.stream.IntStream.range;
 import static org.wordgames.HeapsAlgorithm.heapsAlgorithmGetAllValues;
 
  class Permutation {
-   static ArrayList<String> getAllPossibleValues(String inputString, int targetLength){
+   static void getAllPossibleValues(String inputString, int targetLength){
         int length = inputString.length();
 
         Set<Integer> indexes = range(0, length).boxed().collect(toSet());
@@ -25,12 +29,17 @@ import static org.wordgames.HeapsAlgorithm.heapsAlgorithmGetAllValues;
                 .flatMap(str -> heapsAlgorithmGetAllValues(str).stream())
                 .collect(toSet());
         ArrayList<String> allValues = new ArrayList<>(collect);
-        ArrayList<String> result = new ArrayList<>();
-        for (String item:allValues){
-            if (item.length()>=targetLength){
-                result.add(item);
-            }
-        }
-        return result;
+
+       new File("file.csv");
+       try (PrintWriter csvWriter = new PrintWriter(new FileWriter("file.csv"))) {
+           for (String item:allValues){
+               if (item.length()>=targetLength){
+                   csvWriter.println(item);
+               }
+           }
+
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
     }
 }
