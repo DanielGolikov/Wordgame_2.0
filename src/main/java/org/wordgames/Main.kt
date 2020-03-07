@@ -1,24 +1,17 @@
-package org.wordgames;
+package org.wordgames
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import org.wordgames.PostgresSQLWordChecker.findAllWordsFromArray
 
-import static org.wordgames.Permutation.*;
-
-
-public class Main {
-
-    public static void main(String[] args) {
-        getAllPossibleValues("object",3);
-
-        long start = System.currentTimeMillis();
-        PostgresSQLWordChecker.findAllWordsFromArray();
-        long finish = System.currentTimeMillis();
-        double timeConsumedMillis = finish - start;
-        System.out.println(timeConsumedMillis/1000);
-
-        Exporter ex = new Exporter();
-        ex.exportIntoCSV();
+object Main {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        Permutation.getAllPossibleValues("object", 3)
+        val start = System.currentTimeMillis()
+        findAllWordsFromArray()
+        val finish = System.currentTimeMillis()
+        val timeConsumedMillis = finish - start.toDouble()
+        println(timeConsumedMillis / 1000)
+        val ex = Exporter()
+        ex.exportIntoCSV()
     }
 }
