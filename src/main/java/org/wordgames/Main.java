@@ -10,13 +10,15 @@ import static org.wordgames.Permutation.*;
 public class Main {
 
     public static void main(String[] args) {
-        getAllPossibleValues("liberate",4);
+        getAllPossibleValues("object",3);
 
         long start = System.currentTimeMillis();
         PostgresSQLWordChecker.findAllWordsFromArray();
         long finish = System.currentTimeMillis();
         double timeConsumedMillis = finish - start;
         System.out.println(timeConsumedMillis/1000);
-       // System.out.println(GFG.GFGgetResult("apple"));
+
+        Exporter ex = new Exporter();
+        ex.exportIntoCSV();
     }
 }

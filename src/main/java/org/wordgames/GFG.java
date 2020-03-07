@@ -7,8 +7,10 @@ import java.util.Set;
 
 public class GFG {
     static List result = new ArrayList();
+    static int length=0;
 
-    static public Set<String> GFGgetResult(String str) {
+    static public Set<String> GFGgetResult(String str,int targetLength) {
+        length=targetLength;
         printDistinctPermutn(str, "");
         return new HashSet<>(result);
     }
@@ -20,7 +22,9 @@ public class GFG {
         // If string is empty
         if (str.length() == 0) {
             // print ans
-            result.add(ans);
+            if (ans.length()>=length) {
+                result.add(ans);
+            }
             return;
         }
 
