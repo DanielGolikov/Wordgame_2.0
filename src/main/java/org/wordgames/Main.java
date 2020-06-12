@@ -7,5 +7,6 @@ public class Main {
         WordGameConnector.playWordGame("apple",4);
         Exporter exporter=new Exporter();
         exporter.print();
+
     }
 }
